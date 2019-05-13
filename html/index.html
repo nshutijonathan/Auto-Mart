@@ -1,40 +1,32 @@
+<!doctype html>
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
-	<link rel="stylesheet" type="text/css" href="../css/auth.css">
+  <meta charset="utf-8">
+  <title>BANKA</title>
+  <link rel="stylesheet" type="text/css" href="../css/indexes.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
-<body>
-<div class="form-modal">
-    
-    <div class="form-toggle">
-        <button id="login-toggle" onclick="toggleLogin()">log in</button>
-        <button id="signup-toggle" onclick="toggleSignup()">sign up</button>
-    </div>
+<body class="body2">
+  <div class="box">
+    <h2>WELCOME TO BANKA</h2>
+    <form>
+      <div class="inputBox">
+        <input  type="text" name="" required>
+        <label>Username</label>
 
-    <div id="login-form">
-        <form>
-            <input type="text" placeholder="Enter email or username"/>
-            <input type="password" placeholder="Enter password"/>
-            <button type="button" class="btn login" onclick="location.href='homepage.html';">Log in</button>
-            <p><a href="javascript:void(0)">Forgot password</a></p>
-            <hr/>
-          
-        </form>
-    </div>
-
-    <div id="signup-form">
-        <form>
-            <input type="email" placeholder="Enter your email"/ required="True">
-            <input type="text" placeholder="Choose username"/ required="True">
-            <input type="password" placeholder="Create password"/ required="True">
-            <input type="password" placeholder="Confirm  password"/ required="True">
-            <button type="button" class="btn signup" onclick="location.href='index.html';">create accounts</button>
-        </form>
-    </div>
-
-</div>
-<script src="../js/auth.js">
-        </script>
+        </div>
+      <div class="inputBox">
+        <input required type="Password" name="" >
+        <label>Password</label>
+      </div>
+      <input type="button" name="" value="Log in" id="send" onclick="location.href='homepage.html';"/><br><br>
+      <p id="p">Don't have an account?</p>
+      <input type="button" name="" value="Signup" id="send" onclick="location.href='signup.html';"/><br><br>
+      <a href="authorized.html" class="btn btn-info btn-lg">
+          <span class="glyphicon glyphicon-lock"></span> 
+        </a>
+    </form>
+  </div>
 </body>
 </html>
