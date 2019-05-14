@@ -1,0 +1,94 @@
+body {
+  font-family: "Lato", sans-serif;
+}
+
+.sidebar {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: green;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+
+}
+
+.sidebar a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: white;
+  display: block;
+  transition: 0.3s;
+  
+}
+
+.sidebar a:hover {
+  color: #f1f1f1;
+}
+
+.sidebar .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+ 
+}
+
+.openbtn {
+  font-size: 20px;
+  cursor: pointer;
+  background-color:green;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+}
+
+.openbtn:hover {
+  background-color: green;
+}
+
+#main {
+  transition: margin-left .5s;
+  padding: 16px;
+}
+
+.footer {
+  background-color:white/*#2f5167*/;
+  color:black/*#fff*/;
+  height: 50px;
+  padding: 40px;
+  position: bottom;
+  transition: margin-left .5s;
+ 
+
+}
+.footer-logo{
+  font-size: 32px;
+  float: left;
+  position: bottom;
+  
+}
+.footer-list{
+  float: right;
+  position: bottom;
+
+}
+.footer-list li{
+  padding-bottom: 5px;
+  position: bottom;
+
+}
+.copyrights{
+  text-align: center;
+}
+ li{
+  list-style: none;
+}
+#heading{
+  text-align: center;
+}
