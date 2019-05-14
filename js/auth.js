@@ -24,12 +24,3 @@ function closeNav() {
   document.getElementById("mySidebar").style.width = "0";
   document.getElementById("main").style.marginLeft= "0";
 }
-function landing(){
-    var x=document.getElementById("myLinks");
-    if(x.style.display==="block"){
-        x.style.display="none";
-    }else{
-        x.style.display="block";
-    }
-
-}
