@@ -2,44 +2,16 @@
 <html>
 <head>
 	<title></title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" type="text/css" href="../css/auth.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../css/index.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 </head>
 <body>
-<div class="form-modal">
-    
-    <div class="form-toggle">
-        <button id="login-toggle" onclick="toggleLogin()">Log in</button>
-        <button id="signup-toggle" onclick="toggleSignup()">sign up</button>
-    </div>
+	<h1 id="auto1">Auto-Mart</h1>
 
-    <div id="login-form">
-        <form>
-            <input type="text" placeholder="Enter email or username"/>
-            <input type="password" placeholder="Enter password"/>
-            <button type="button" class="btn login" onclick="location.href='homepage.html';">Log in</button>
-            <a href="#" class="btn btn-default btn-sm">
-          <span class="glyphicon glyphicon-lock"></span> 
-        </a>
-            <p><a href="javascript:void(0)">Forgot password</a></p>
-            <hr/>
-          
-        </form>
-    </div>
+	<p>Auto Mart is an online marketplace for automobiles of diverse makes, model or body type</p>
+	<div class="first">
+		<a class="started" href="landing.html"><i class="fas fa-arrow-right"></i></a>
+	</div>
 
-    <div id="signup-form">
-        <form>
-            <input type="email" placeholder="Enter your email"/ required="True">
-            <input type="text" placeholder="Choose username"/ required="True">
-            <input type="password" placeholder="Create password"/ required="True">
-            <input type="password" placeholder="Confirm  password"/ required="True">
-            <button type="button" class="btn signup" onclick="location.href='index.html';">create accounts</button>
-        </form>
-    </div>
-
-</div>
-<script src="../js/auth.js">
-        </script>
 </body>
 </html>
