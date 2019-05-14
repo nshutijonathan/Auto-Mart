@@ -15,10 +15,10 @@
     </div>
 
     <div id="login-form">
-        <form>
-            <input type="text" placeholder="Enter email or username"/>
-            <input type="password" placeholder="Enter password"/>
-            <button type="button" class="btn login" onclick="location.href='homepage.html';">Log in</button>
+        <form action="homepage.html">
+            <input type="text" placeholder="Enter email or username" required/>
+            <input type="password" placeholder="Enter password" required/>
+             <input type="submit" class="btn signup" value="Log in" >
             <a href="#" class="btn btn-default btn-sm">
           <span class="glyphicon glyphicon-lock"></span> 
         </a>
@@ -29,12 +29,12 @@
     </div>
 
     <div id="signup-form">
-        <form>
-            <input type="email" placeholder="Enter your email"/ required="True">
-            <input type="text" placeholder="Choose username"/ required="True">
-            <input type="password" placeholder="Create password"/ required="True">
-            <input type="password" placeholder="Confirm  password"/ required="True">
-            <button type="button" class="btn signup" onclick="location.href='landing.html';">create accounts</button>
+        <form action="landing.html">
+            <input type="email" placeholder="Enter your email"/ required>
+            <input type="text" placeholder="Choose username"/ required>
+            <input type="password" placeholder="Create password"/ required>
+            <input type="password" placeholder="Confirm  password"/ required>
+            <input type="submit" class="btn signup" value="create accounts" >
         </form>
     </div>
 
