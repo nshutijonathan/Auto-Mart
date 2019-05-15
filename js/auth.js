@@ -45,8 +45,8 @@ function PurchaseConfirm(){
   }
 }
 function changecontent(){
-  rn=window.prompt("Enter Row number(0,1,2,3)","0");
-  cn=window.prompt("Enter Column number(0,1,2,3)","0");
+  rn=window.prompt("Enter Row number(0,1,2,3,4,5,6)","0");
+  cn=window.prompt("Enter Column number(0,1,2,3,4,5,6)","0");
   content=window.prompt("Enter the price");
   result=document.getElementById('myTable').rows[parseInt(rn,10)].cells;
   result[parseInt(cn,10)].innerHTML=content;

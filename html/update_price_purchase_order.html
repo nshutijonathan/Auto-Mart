@@ -1,20 +1,32 @@
-<head> 
-<meta charset=utf-8 /> 
-<title></title> 
-<style type="text/css"> 
-body {margin: 30px;} 
-</style>  
-</head><body> 
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <link rel="stylesheet" type="text/css" href="../css/webpages.css">
+</head>
+<body> 
+  <div id="mySidebar" class="sidebar">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+  <a href="homepage.html">Home</a>
+  <a href="update_price_purchase_order.html">Update price PO</a>
+  <a href="#">All Unsold cars</a>
+  <a href="#">Unsold cars in range</a>
+  <a href="landing.html">Log out</a>
+</div>
+
+<div id="main">
+  <button class="openbtn" onclick="openNav()">☰</button> 
+  <p>Your History</p>
 <table id="myTable" border="1"> 
   <tr>
     <th>Name on Card</th>
     <th>Credit card number</th>
     <th>Exp Year</th>
     <th>Full Name</th>
-    <th>Enter Your Email</th>
-    <th>Enter Your State</th>
-    <th>Ordered car id</th>
-    <th>Enter agreed amounts</th>
+    <th>Your State</th>
+    <th>Car brand</th>
+    <th>Ordered car ID</th>
+    <th>Agreed price</th>
     <th></th>
   </tr>
 
@@ -23,10 +35,10 @@ body {margin: 30px;}
   <td>202022</td>
   <td>2019</td>
   <td>Muzehe Aphrodis</td>
-  <td>muzehe@gmail.com</td>
   <td>Rwanda</td>
+  <td>Toyota</td>
   <td>22www</td>
-  <td>2000$</td>
+  <td>9000$</td>
   <td><input type="button" onclick="changecontent()" value="update content"></td>
   <tr>
     <tr>
@@ -34,10 +46,10 @@ body {margin: 30px;}
   <td>202022</td>
   <td>2019</td>
   <td>Muzehe Aphrodis</td>
-  <td>muzehe@gmail.com</td>
   <td>Rwanda</td>
-  <td>22www</td>
-  <td>2000$</td>
+  <td>Hammer</td>
+  <td>244wBBww</td>
+  <td>6000$</td>
   <td><input type="button" onclick="changecontent()" value="update content"></td>
   <tr>
     <tr>
@@ -45,13 +57,14 @@ body {margin: 30px;}
   <td>202022</td>
   <td>2019</td>
   <td>Muzehe Aphrodis</td>
-  <td>muzehe@gmail.com</td>
   <td>Rwanda</td>
-  <td>22www</td>
-  <td>2000$</td>
+  <td>V8</td>
+  <td>99VGww</td>
+  <td>4000$</td>
   <td><input type="button" onclick="changecontent()" value="update content"></td>
   <tr>
 </table> 
 <script src="../js/auth.js">
         </script>
 </body>
+</html>
