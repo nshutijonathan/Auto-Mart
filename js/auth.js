@@ -33,3 +33,14 @@ function landing(){
     }
 
 }
+function PurchaseConfirm(){
+  var confirm=confirm("Are you sure to order the car?");
+  if(confirm==true){
+    alert("Purchasing order Successfully sent!!");
+    return true;
+  }
+  else{
+     alert("Purchasing order not Successfully sent!!");
+    return false;
+  }
+}
