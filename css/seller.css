@@ -166,3 +166,8 @@ footer{
 	}
 
 }
+article#main-col{
+	float: left;
+	width: 65%;
+
+}
