@@ -2,8 +2,34 @@
 <html>
 <head>
 	<title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="../css/auth.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 <body>
+<div class="form-modal">
+    
+    <div class="form-toggle">
+        <button id="login-toggle" onclick="toggleLogin()">Log in admin</button>
+        <button id="signup-toggle" onclick="toggleSignup()"></button>
+    </div>
 
+    <div id="login-form">
+        <form action="admin_panel.html">
+            <input type="text" placeholder="Enter email or username" required/>
+            <input type="password" placeholder="Enter password" required/>
+             <input type="submit" class="btn signup" value="Log in" >
+            
+            
+            <hr/>
+          
+        </form>
+    </div>
+
+    
+
+</div>
+<script src="../js/auth.js">
+        </script>
 </body>
-</html>
+</html><!DOCTYPE html>
