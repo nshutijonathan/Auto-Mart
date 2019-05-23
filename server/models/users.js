@@ -1,18 +1,18 @@
-const Users_data = [{
+const UsersData = [{
   id: 1,
   email: 'nshuti@gmail.com',
   first_name: 'nshuti',
   last_name: 'jonathan',
-  password: 'zero',
+  password: 'jonathan',
   address: 'kigali',
-  is_admin: false
+  is_admin: true
 }, {
   id: 2,
-  email: 'nshuti@gmail.com',
+  email: 'lfa@andela.com',
   first_name: 'nshuti',
   last_name: 'jonathan',
-  password: 'zero',
-  address: 'kigali',
+  password: 'zerooo',
+  address: 'muhanga',
   is_admin: false
 }];
-export default Users_data;
+export default UsersData;
