@@ -1,5 +1,6 @@
 import express from 'express';
 import UsersData from '../models/users';
+import Usersvalidations from '../validations/users';
 
 class Users {
   static getallusers(req, res) {
@@ -27,23 +28,39 @@ class Users {
   }
 
   static createuser(req, res) {
-    const user = {
-      id: UsersData.length + 1,
-      email: req.body.email,
-      first_name: req.body.first_name,
-      last_name: req.body.last_name,
-      password: req.body.password,
-      address: req.body.address,
-      is_admin: req.body.is_admin
-    };
-    UsersData.push(user);
-    return res.status(201).send({
-      status: 201,
-      message: 'User created successfully',
-      data: {
-        id: Object.values(user)[0], first_name: Object.values(user)[2], last_name: Object.values(user)[3], email: Object.values(user)[1]
-      }
-    });
+  	try {
+  		if (Usersvalidations.validatesignup(req, res)) {
+  			const Checkuser = UsersData.filter(user => user.email == req.body.email);
+  			if (Checkuser.length === 1) {
+  				return res.status(409).send({
+  					status: 409,
+  					message: 'this email already exist'
+  				});
+  			}
+  		}
+  		const user = {
+        id: UsersData.length + 1,
+        email: req.body.email,
+        first_name: req.body.first_name,
+        last_name: req.body.last_name,
+        password: req.body.password,
+        address: req.body.address,
+        is_admin: req.body.is_admin
+      };
+      UsersData.push(user);
+      return res.status(201).send({
+        status: 201,
+        message: 'User created successfully',
+        data: {
+          id: Object.values(user)[0], first_name: Object.values(user)[2], last_name: Object.values(user)[3], email: Object.values(user)[1]
+        }
+      });
+  	} catch (error) {
+    	return res.status(400).send({
+
+    		message: error.message
+    	});
+    }
   }
 
   static deleteuser(req, res) {
