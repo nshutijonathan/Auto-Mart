@@ -69,23 +69,30 @@ class Users {
       password: req.body.password
     };
     const checkmail = UsersData.filter(checkuser => checkuser.email === user.email);
-    if (checkmail === false) {
+    if (checkmail == false) {
       return res.status(401).send({
         status: 401,
         message: 'Incorect email or password'
       });
     }
     const checkpswd = UsersData.filter(checkuser => checkuser.password === user.password);
-    if (checkpswd === false) {
+    if (checkpswd == false) {
       return res.status(401).send({
         status: 401,
         message: 'Incorect email or password'
       });
     }
 
+    const checkvalues = UsersData.filter(checkuser => checkuser.email == user.email);
+    const first_name = checkvalues[0].first_name;
+    const last_name = checkvalues[0].last_name;
+    const email = checkvalues[0].email;
     return res.status(200).send({
       status: 200,
-      message: 'successfully logged in'
+      message: 'successfully logged in',
+      data: {
+        first_name, last_name, email
+      }
     });
   }
 
