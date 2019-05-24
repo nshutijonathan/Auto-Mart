@@ -55,5 +55,20 @@ class Usersvalidations {
     }
     return true;
   }
+  static validatesignin(req, res){
+    if (typeof req.body.email === 'number') {
+      throw Error('your email must look like  this ex:andela@gmail.com');
+    }
+    if (validator.isEmpty(req.body.email)) {
+      throw Error('email is required');
+    }
+    if (!validator.isEmail(req.body.email)) {
+      throw Error('your email must look like  this ex:andela@gmail.com');
+    }
+     if (validator.isEmpty(req.body.password)) {
+      throw Error('password is required');
+    }
+
+  }
 }
 export default Usersvalidations;
