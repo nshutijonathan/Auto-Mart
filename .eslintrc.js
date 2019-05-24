@@ -6,7 +6,7 @@ module.exports = {
 "prefer-destructuring": 0,
 "treatUndefinedAsUnspecified": true,
 "arrow-body-style": 0,
-"comma-dangle": 0,
+"comma-dangle": 0
 },
 "env": {
 "commonjs": true,

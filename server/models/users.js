@@ -1,20 +1,18 @@
-export const User_data = {
+const UsersData = [{
   id: 1,
+  email: 'nshuti@gmail.com',
   first_name: 'nshuti',
   last_name: 'jonathan',
-  password: 'zero',
+  password: 'jonathan',
   address: 'kigali',
+  is_admin: true
+}, {
+  id: 2,
+  email: 'lfa@andela.com',
+  first_name: 'nshuti',
+  last_name: 'jonathan',
+  password: 'zerooo',
+  address: 'muhanga',
   is_admin: false
-};
-
-class Users {
-  constructor(id, email, first_name, last_name, password, address, is_admin) {
-    this.id = id;
-    this.first_name = first_name;
-    this.last_name = last_name;
-    this.password = password;
-    this.address = address;
-    this.is_admin = is_admin;
-  }
-}
-export default { Users };
+}];
+export default UsersData;
