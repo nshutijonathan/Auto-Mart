@@ -63,6 +63,32 @@ class Users {
     }
   }
 
+  static signinuser(req, res) {
+    const user = {
+      email: req.body.email,
+      password: req.body.password
+    };
+    const checkmail = UsersData.filter(checkuser => checkuser.email === user.email);
+    if (checkmail === false) {
+      return res.status(401).send({
+        status: 401,
+        message: 'Incorect email or password'
+      });
+    }
+    const checkpswd = UsersData.filter(checkuser => checkuser.password === user.password);
+    if (checkpswd === false) {
+      return res.status(401).send({
+        status: 401,
+        message: 'Incorect email or password'
+      });
+    }
+
+    return res.status(200).send({
+      status: 200,
+      message: 'successfully logged in'
+    });
+  }
+
   static deleteuser(req, res) {
     const selecteduser = UsersData.find(checkId => checkId.id === parseInt(req.params.id, 10));
     if (!selecteduser) {

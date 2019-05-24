@@ -68,7 +68,10 @@ class Usersvalidations {
     }
     if (validator.isEmpty(req.body.password)) {
       throw Error('password is required');
+    } else {
+
     }
+    return true;
   }
 }
 export default Usersvalidations;
