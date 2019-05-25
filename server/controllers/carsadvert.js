@@ -25,21 +25,28 @@ class Cars {
   		body_type: req.body.body_type
   	};
   	if (req.body.price < 1) {
-  		return res.status(405).send({
-  			status: 405,
+  		return res.status(400).send({
+  			status: 400,
   			message: 'please the price must be valid'
   		});
   	}
   	CarsData.push(car);
-  	const sellerid = UserData.filter(checkid => checkid.id == req.body.owner);
-  	const selleremail = sellerid[0].email;
-  	console.log(selleremail);
-  	return res.status(201).send({
+  	const sellerid = UserData.find(checkid => checkid.id == req.body.owner);
+  	/* const selleremail = sellerid[0].email; */
+  	console.log(sellerid);
+  	if (!sellerid) {
+  		res.status(404).send({
+  			status: 404,
+  			message: `The seller with id ${req.body.owner} not found`
+  		});
+  	}
+
+    	return res.status(201).send({
   		status: 201,
   		message: 'Car advert is successfully created',
   		data: {
         id: car.id,
-        email: selleremail,
+        email: sellerid.email,
         created_on: car.created_on,
         manufacturer: car.manufacturer,
   		model: car.model,
