@@ -45,10 +45,10 @@ class Usersvalidations {
       throw Error('address must not contail special characters');
     }
     if (validator.isEmpty(req.body.is_admin)) {
-      throw Error('the field is required');
+      throw Error('the is_admin field is required');
     }
-    if (typeof req.body.is_admin !== 'true' && req.body.is_admin !== 'false') {
-      throw Error('this field must be boolean');
+    if (req.body.is_admin !== 'false' && req.body.is_admin !== 'true') {
+      throw Error('this is_admin field must be true of false');
     } else {
 
 
