@@ -49,4 +49,4 @@ class Carsvalidations {
     return true;
   }
 }
-export default Carsvali
+export default Carsvalidations;

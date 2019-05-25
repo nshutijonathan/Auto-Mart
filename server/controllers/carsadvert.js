@@ -1,6 +1,7 @@
 import express from 'express';
 import CarsData from '../models/carsadvert';
 import UserData from '../models/users';
+import Carsvalidations from '../validations/carsadvert';
 
 const date = new Date();
 class Cars {
@@ -13,6 +14,8 @@ class Cars {
   }
 
   static createadvert(req, res) {
+    try {
+      if (Carsvalidations.createcarsad(req, res)) {
   	const car = {
   		id: CarsData.length + 1,
   		owner: req.body.owner,
@@ -24,12 +27,7 @@ class Cars {
   		model: req.body.model,
   		body_type: req.body.body_type
   	};
-  	if (req.body.price < 1) {
-  		return res.status(400).send({
-  			status: 400,
-  			message: 'please the price must be valid'
-  		});
-  	}
+
   	CarsData.push(car);
   	const sellerid = UserData.find(checkid => checkid.id == req.body.owner);
   	/* const selleremail = sellerid[0].email; */
@@ -45,16 +43,23 @@ class Cars {
   		status: 201,
   		message: 'Car advert is successfully created',
   		data: {
-        id: car.id,
-        email: sellerid.email,
-        created_on: car.created_on,
-        manufacturer: car.manufacturer,
+            id: car.id,
+            email: sellerid.email,
+            created_on: car.created_on,
+            manufacturer: car.manufacturer,
   		model: car.model,
-        price: car.price,
-        state: car.state,
-        status: car.status
-      }
+            price: car.price,
+            state: car.state,
+            status: car.status
+          }
   	});
+      }
+    } catch (error) {
+      return res.status(400).send({
+
+        message: error.message
+      });
+    }
   }
 }
 export default Cars;
