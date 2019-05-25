@@ -47,6 +47,7 @@ class Users {
         address: req.body.address,
         is_admin: req.body.is_admin
       };
+
       UsersData.push(user);
       return res.status(201).send({
         status: 201,
