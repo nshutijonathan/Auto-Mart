@@ -15,7 +15,7 @@ class Cars {
 
   static createadvert(req, res) {
     try {
-      if (Carsvalidations.createcarsad(req, res)) {
+      if (Carsvalidations.createcarsad(req, res)) {}
   	const car = {
   		id: CarsData.length + 1,
   		owner: req.body.owner,
@@ -43,23 +43,23 @@ class Cars {
   		status: 201,
   		message: 'Car advert is successfully created',
   		data: {
-            id: car.id,
-            email: sellerid.email,
-            created_on: car.created_on,
-            manufacturer: car.manufacturer,
-  		model: car.model,
-            price: car.price,
-            state: car.state,
-            status: car.status
-          }
+          id: car.id,
+          email: sellerid.email,
+          created_on: car.created_on,
+          manufacturer: car.manufacturer,
+  		      model: car.model,
+          price: car.price,
+          state: car.state,
+          status: car.status
+        }
   	});
-      }
     } catch (error) {
       return res.status(400).send({
-
         message: error.message
       });
     }
   }
 }
+
+
 export default Cars;
