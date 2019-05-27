@@ -18,4 +18,5 @@ router.post('/api/v1/car', Cars.createadvert);
 // Purchase orders routes
 router.get('/api/v1/orders', Orders.getallorders);
 router.post('/api/v1/order', Orders.createorder);
+router.put('/api/v1/order/:id/price', Orders.updateorder);
 export default router;

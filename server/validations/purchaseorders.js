@@ -5,8 +5,8 @@ class Ordersvalidations {
     if (req.body.amount < 1) {
       throw Error('Invalid amount of money');
     }
-    if (((req.body.status != 'pending' || req.body.status != 'accepted') || req.body.status != 'rejected')) {
-      throw Error('Invalid status');
+    if (((req.body.status !== 'pending' && req.body.status !== 'accepted') && req.body.status !== 'rejected')) {
+      throw Error('this status field must be pending,accepted,or rejected ');
     }
   }
 }
