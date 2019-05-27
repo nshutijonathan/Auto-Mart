@@ -16,7 +16,12 @@ class Orders {
 
   static createorder(req, res) {
   	try {
-  		if (Ordersvalidations.purchaseorder(req, res)) {}
+  		if (req.body.amount < 1) {
+  			return res.status(400).send({
+  				status: 400,
+  				message: 'Please field is required'
+  			});
+  		}
   	const order = {
   		id: Ordersmodel.length + 1,
   		buyer: req.body.buyer,
@@ -65,16 +70,24 @@ class Orders {
   }
 
   static updateorder(req, res) {
+  	try {
   	if (req.params.id < 1) {
   		return res.status(404).send({
   			status: 404,
   			message: `the order with id ${req.params.id} not found`,
   		});
   	}
+      if (req.body.amount < 1) {
+   	return res.status(404).send({
+  			status: 404,
+  			message: 'invalid  amount ',
+  		});
+  	}
+
   	const checkorder = Ordersmodel.find(checkid => checkid.id === parseInt(req.params.id));
   	const oldprice = Ordersmodel.find(checkid => checkid.id === parseInt(req.params.id));
-    const old_price_offered = oldprice.amount;
-    const check_status = oldprice.status;
+      const old_price_offered = oldprice.amount;
+      const check_status = oldprice.status;
   	if (!checkorder) {
   		return res.status(404).send({
   			status: 404,
@@ -87,19 +100,75 @@ class Orders {
   			message: `Not allowed order ${req.params.id} is not still pending`
   		});
   	}
-  	if (check_status == 'pending') {
+  	if (!(check_status == 'pending' || checkorder)) {
+  	return res.status(500).send({
+  		message: 'server erro'
+  	});
+  	}
+  	if ((check_status == 'pending' && checkorder)) {
   		console.log(check_status);
   	console.log(oldprice.amount);
   	checkorder.amount = req.body.amount;
   	console.log(checkorder.amount);
   	return res.status(200).send({
-        status: 200,
-        message: `Purchasing order ${req.params.id} is successfully updated`,
+          status: 200,
+          message: `Purchasing order ${req.params.id} is successfully updated`,
   		data: {
-          id: checkorder.id, car_id: checkorder.car_id, status: checkorder.status, old_price_offered, new_price_offered: checkorder.amount
-        }
-      });
+            id: checkorder.id, car_id: checkorder.car_id, status: checkorder.status, old_price_offered, new_price_offered: checkorder.amount
+          }
+        });
   	}
+    } catch (error) {
+  	return res.status(400).send({
+  		status: 400,
+  		message: `The order with id ${req.params.id} not found`
+  	});
+    }
+  }
+
+
+  	static updatestatus(req, res) {
+  		try {
+      if (Ordersvalidations.statusupdate(req, res)) {}
+  		if (req.params.id < 1) {
+  			res.status(404).send({
+  				status: 404,
+  				message: `Car with id ${req.params.id} not found`
+  			});
+  		}
+  		const checkcar = CarsData.find(checkid => checkid.id === parseInt(req.params.id));
+  		const checkmail = UserData.filter(checkmail => checkmail.id === parseInt(checkcar.owner));
+  		const checkedmail = checkmail[0].email;
+  			if (!checkcar) {
+  		return res.status(404).send({
+  			status: 404,
+  			message: `car with id ${req.params.id} not found`
+  		});
   	}
+  	if (checkcar) {
+  		checkcar.status = req.body.status;
+  		return res.status(200).send({
+  			status: 200,
+  			message: 'Car status is updated successfully',
+  			data: {
+  				id: checkcar.id,
+  				email: checkedmail,
+  				created_on: date,
+  				manufacturer: checkcar.manufacturer,
+  				model: checkcar.model,
+  				price: checkcar.price,
+  				state: checkcar.state,
+  				status: checkcar.status
+
+  			}
+  		});
+  	}
+  	} catch (error) {
+  	return res.status(400).send({
+  		status: 400,
+  		message: error.message
+  	});
+    }
+  }
 }
 export default Orders;
