@@ -28,7 +28,7 @@ class Cars {
   		body_type: req.body.body_type
   	};
 
-  	CarsData.push(car);
+
   	const sellerid = UserData.find(checkid => checkid.id == req.body.owner);
   	/* const selleremail = sellerid[0].email; */
   	console.log(sellerid);
@@ -38,21 +38,23 @@ class Cars {
   			message: `The seller with id ${req.body.owner} not found`
   		});
   	}
-
-    	return res.status(201).send({
-  		status: 201,
-  		message: 'Car advert is successfully created',
-  		data: {
-          id: car.id,
-          email: sellerid.email,
-          created_on: car.created_on,
-          manufacturer: car.manufacturer,
-  		      model: car.model,
-          price: car.price,
-          state: car.state,
-          status: car.status
-        }
-  	});
+      if (sellerid) {
+        CarsData.push(car);
+        return res.status(201).send({
+          status: 201,
+          message: 'Car advert is successfully created',
+          data: {
+            id: car.id,
+            email: sellerid.email,
+            created_on: car.created_on,
+            manufacturer: car.manufacturer,
+            model: car.model,
+            price: car.price,
+            state: car.state,
+            status: car.status
+          }
+        });
+      }
     } catch (error) {
       return res.status(400).send({
         message: error.message
