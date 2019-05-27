@@ -2,7 +2,7 @@ import express from 'express';
 import Ordersmodel from '../models/purchaseorders';
 import UserData from '../models/users';
 import CarsData from '../models/carsadvert';
-
+import Ordersvalidations from '../validations/purchaseorders';
 const date = new Date();
 class Orders {
   static getallorders(req, res) {
@@ -14,6 +14,7 @@ class Orders {
   }
 
   static createorder(req, res) {
+  	try{if Ordersvalidations.purchaseorder(req,res){}
   	const order = {
   		id: Ordersmodel.length + 1,
   		buyer: req.body.buyer,
@@ -53,6 +54,13 @@ class Orders {
   			}
   		});
   	}
+  }
+  catch(error){
+  	return res.status(400).send({
+  		status:400,
+  		message:error.message
+  	})
+  }
   }
 }
 export default Orders;
