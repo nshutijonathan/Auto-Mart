@@ -1,6 +1,7 @@
 import express from 'express';
 import Users from '../controllers/users';
 import Cars from '../controllers/carsadvert';
+import Orders from '../controllers/purchaseorders';
 // creating middleware
 const router = express.Router();
 // Users routes
@@ -13,4 +14,8 @@ router.delete('/api/v1/users/:id', Users.deleteuser);
 // cars advert routes
 router.get('/api/v1/cars', Cars.getallcarsad);
 router.post('/api/v1/car', Cars.createadvert);
+
+// Purchase orders routes
+router.get('/api/v1/orders', Orders.getallorders);
+router.post('/api/v1/order', Orders.createorder);
 export default router;
