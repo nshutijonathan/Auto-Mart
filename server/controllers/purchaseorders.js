@@ -101,5 +101,14 @@ class Orders {
       });
   	}
   	}
+
+  	static updatestatus(req, res) {
+  		if (req.params.id < 1) {
+  			res.status(404).send({
+  				status: 404,
+  				message: `Car with id ${req.params.id} not found`
+  			});
+  		}
+  	}
 }
 export default Orders;
