@@ -19,5 +19,5 @@ router.post('/api/v1/car', Cars.createadvert);
 router.get('/api/v1/orders', Orders.getallorders);
 router.post('/api/v1/order', Orders.createorder);
 router.put('/api/v1/order/:id/price', Orders.updateorder);
-router.put('/api/v1/car/:id/status',Orders.)
+router.put('/api/v1/car/:id/status', Orders.updatestatus);
 export default router;
