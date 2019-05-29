@@ -3,6 +3,7 @@ import CarsData from '../models/carsadvert';
 import UserData from '../models/users';
 import Carsvalidations from '../validations/carsadvert';
 
+
 const date = new Date();
 class Cars {
   static getallcarsad(req, res) {
@@ -25,7 +26,8 @@ class Cars {
   		price: req.body.price,
   		manufacturer: req.body.manufacturer,
   		model: req.body.model,
-  		body_type: req.body.body_type
+  		body_type: req.body.body_type,
+        photo: req.body.photo
   	};
 
 
@@ -51,7 +53,8 @@ class Cars {
             model: car.model,
             price: car.price,
             state: car.state,
-            status: car.status
+            status: car.status,
+            photo: car.photo
           }
         });
       }
