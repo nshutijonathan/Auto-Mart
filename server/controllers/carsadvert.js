@@ -3,7 +3,6 @@ import CarsData from '../models/carsadvert';
 import UserData from '../models/users';
 import Carsvalidations from '../validations/carsadvert';
 
-
 const date = new Date();
 class Cars {
   static getallcarsad(req, res) {
@@ -61,6 +60,109 @@ class Cars {
     } catch (error) {
       return res.status(400).send({
         message: error.message
+      });
+    }
+  }
+
+  static updatecarprice(req, res) {
+    try {
+      if (req.params.id < 1) {
+        res.status(404).send({
+          status: 404,
+          message: `Car with id ${req.params.id} not found`
+        });
+      }
+      if (!(req.body.price > 0)) {
+        res.status(422).send({
+          status: 422,
+          message: 'Invalid price inputs'
+        });
+      }
+      const checkcar = CarsData.find(checkid => checkid.id === parseInt(req.params.id));
+      const checkmail = UserData.filter(checkmail => checkmail.id === parseInt(checkcar.owner));
+      const checkedmail = checkmail[0].email;
+      if (!checkcar) {
+        return res.status(404).send({
+          status: 404,
+          message: `car with id ${req.params.id} not found`
+        });
+      }
+      if (checkcar) {
+        checkcar.price = req.body.price;
+        return res.status(200).send({
+          status: 200,
+          message: 'Car price is updated successfully',
+          data: {
+            id: checkcar.id,
+            email: checkedmail,
+            created_on: date,
+            manufacturer: checkcar.manufacturer,
+            model: checkcar.model,
+            price: checkcar.price,
+            state: checkcar.state,
+            status: checkcar.status,
+            photo: checkcar.photo
+
+          }
+        });
+      }
+    } catch (error) {
+      return res.status(400).send({
+        status: 400,
+        message: `The order with id ${req.params.id} not found`
+      });
+    }
+  }
+
+  static getonecar(req, res) {
+    const checkcar = CarsData.find(checkid => checkid.id === parseInt(req.params.id));
+    if (!(req.params.id) > 0) {
+      return res.status(404).send({
+        status: 404,
+        message: `car with id ${req.params.id} not found`
+      });
+    }
+    if (!checkcar) {
+      res.status(404).send({
+        status: 404,
+        message: `car with id ${req.params.id} not found`
+      });
+    }
+    if (checkcar) {
+      return res.status(200).send({
+        status: 200,
+        message: `car with id ${req.params.id} retreived successfully`,
+        data: checkcar
+      });
+    }
+  }
+
+  static getallavailable(req, res) {
+    const checkcar = CarsData.find(checkid => checkid.id === parseInt(req.params.id));
+    const carstatus = CarsData.filter(checkstatus => checkstatus.status == 'available');
+    if (carstatus) {
+      return res.status(200).send({
+        status: 200,
+        message: 'all available cars successfully retreived',
+        data: carstatus
+      });
+    }
+  }
+
+  static deletecar(req, res) {
+    const checkcar = CarsData.find(checkId => checkId.id === parseInt(req.params.id, 10));
+    if (!checkcar) {
+      return res.status(404).send({
+        status: 404,
+        message: `Car with id ${req.params.id} not found`,
+      });
+    }
+    if (checkcar) {
+      const index = CarsData.indexOf(checkcar);
+      CarsData.splice(index, 1);
+      return res.status(200).send({
+        status: 200,
+        message: `car with id ${req.params.id} is successfully deleted `
       });
     }
   }

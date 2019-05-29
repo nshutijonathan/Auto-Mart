@@ -22,9 +22,10 @@ class Carsvalidations {
     if (validator.isEmpty(req.body.price)) {
       throw Error('Price field must not be empty');
     }
-    if (req.body.price < 1) {
+    if (!(req.body.price > 0)) {
       throw Error('Price must be valid');
     }
+
     if (validator.isEmpty(req.body.manufacturer)) {
       throw Error('This field manufacturer must not be empty');
     }
@@ -39,6 +40,21 @@ class Carsvalidations {
     }
     if (validator.isEmpty(req.body.body_type)) {
       throw Error('This field body_type is required');
+    }
+    if (validator.isEmpty(req.body.photo)) {
+      throw Error('This field photo is required');
+    } else {
+
+    }
+    return true;
+  }
+
+  static priceupdate(req, res) {
+    if (!(req.body.price)) {
+      throw Error('this price field  is required ');
+    }
+    if (!(req.body.price > 0)) {
+      throw Error('Price must be valid');
     } else {
 
     }

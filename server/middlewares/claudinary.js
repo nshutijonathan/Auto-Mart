@@ -17,6 +17,10 @@ export const imageUploader = (req, res, next) => {
     }
     if (error) {
     	console.log(error);
+      return res.status(404).send({
+        status: 404,
+        message: 'Invalid URl'
+      });
     }
     return next();
   });

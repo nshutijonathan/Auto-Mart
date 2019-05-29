@@ -15,7 +15,10 @@ router.delete('/api/v1/users/:id', Users.deleteuser);
 // cars advert routes
 router.get('/api/v1/cars', Cars.getallcarsad);
 router.post('/api/v1/car', imageUploader, Cars.createadvert);
-
+router.put('/api/v1/car/:id/price', Cars.updatecarprice);
+router.get('/api/v1/car/:id', Cars.getonecar);
+router.get('/api/v1/cars/available', Cars.getallavailable);
+router.delete('/api/v1/cars/:id', Cars.deletecar);
 // Purchase orders routes
 router.get('/api/v1/orders', Orders.getallorders);
 router.post('/api/v1/order', Orders.createorder);
