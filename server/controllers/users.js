@@ -3,7 +3,7 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import UsersData from '../models/users';
 import Usersvalidations from '../validations/users';
-
+import config from 'config';
 class Users {
   static getallusers(req, res) {
     return res.status(200).send({
@@ -91,7 +91,7 @@ class Users {
     const last_name = checkvalues[0].last_name;
     const email = checkvalues[0].email;
     const is_admin = checkvalues[0].is_admin;
-    const token = jwt.sign({ id, is_admin }, 'jwtPrivateKey');
+    const token = jwt.sign({ id, is_admin }, config.get('jwtPrivateKey');
     return res.status(200).send({
       status: 200,
       message: 'successfully logged in',
