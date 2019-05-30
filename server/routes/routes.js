@@ -4,6 +4,7 @@ import Cars from '../controllers/carsadvert';
 import Orders from '../controllers/purchaseorders';
 import { imageUploader } from '../middlewares/claudinary';
 import Usershelpers from '../middlewares/users.js';
+import auth from '../middlewares/auth';
 // creating middleware
 const router = express.Router();
 // Users routes
@@ -21,7 +22,7 @@ router.get('/api/v1/car/:id', Cars.getonecar);
 router.get('/api/v1/cars/available', Cars.getallavailable);
 router.get('/api/v1/cars/available&new', Cars.availablenew);
 router.get('/api/v1/cars/available&used', Cars.availableused);
-router.delete('/api/v1/cars/:id', Cars.deletecar);
+router.delete('/api/v1/cars/:id', auth, Cars.deletecar);
 // Purchase orders routes
 router.get('/api/v1/orders', Orders.getallorders);
 router.post('/api/v1/order', Orders.createorder);

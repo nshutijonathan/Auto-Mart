@@ -3,7 +3,7 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import UsersData from '../models/users';
 import Usersvalidations from '../validations/users';
-import config from 'config';
+
 class Users {
   static getallusers(req, res) {
     return res.status(200).send({
@@ -50,11 +50,12 @@ class Users {
         is_admin: req.body.is_admin
       };
       UsersData.push(user);
-      return res.status(201).send({
+      const token = jwt.sign({ id: Object.values(user)[0], is_admin: Object.values(user)[6] }, 'jwtPrivateKey');
+      return res.header('x-auth-token', token).status(201).send({
         status: 201,
         message: 'User created successfully',
         data: {
-          id: Object.values(user)[0], first_name: Object.values(user)[2], last_name: Object.values(user)[3], email: Object.values(user)[1]
+          token, id: Object.values(user)[0], first_name: Object.values(user)[2], last_name: Object.values(user)[3], email: Object.values(user)[1]
         }
       });
   	} catch (error) {
@@ -91,7 +92,7 @@ class Users {
     const last_name = checkvalues[0].last_name;
     const email = checkvalues[0].email;
     const is_admin = checkvalues[0].is_admin;
-    const token = jwt.sign({ id, is_admin }, config.get('jwtPrivateKey');
+    const token = jwt.sign({ id, is_admin }, 'jwtPrivateKey');
     return res.status(200).send({
       status: 200,
       message: 'successfully logged in',
