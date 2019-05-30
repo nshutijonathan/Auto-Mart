@@ -3,6 +3,7 @@ import Users from '../controllers/users';
 import Cars from '../controllers/carsadvert';
 import Orders from '../controllers/purchaseorders';
 import { imageUploader } from '../middlewares/claudinary';
+import Usershelpers from '../middlewares/users.js';
 // creating middleware
 const router = express.Router();
 // Users routes

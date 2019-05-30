@@ -1,4 +1,6 @@
 import express from 'express';
+import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 import UsersData from '../models/users';
 import Usersvalidations from '../validations/users';
 
@@ -47,7 +49,6 @@ class Users {
         address: req.body.address,
         is_admin: req.body.is_admin
       };
-
       UsersData.push(user);
       return res.status(201).send({
         status: 201,
@@ -85,14 +86,17 @@ class Users {
     }
 
     const checkvalues = UsersData.filter(checkuser => checkuser.email == user.email);
+    const id = checkvalues[0].id;
     const first_name = checkvalues[0].first_name;
     const last_name = checkvalues[0].last_name;
     const email = checkvalues[0].email;
+    const is_admin = checkvalues[0].is_admin;
+    const token = jwt.sign({ id, is_admin }, 'jwtPrivateKey');
     return res.status(200).send({
       status: 200,
       message: 'successfully logged in',
       data: {
-        first_name, last_name, email
+        token, first_name, last_name, email
       }
     });
   }
