@@ -18,6 +18,8 @@ router.post('/api/v1/car', imageUploader, Cars.createadvert);
 router.put('/api/v1/car/:id/price', Cars.updatecarprice);
 router.get('/api/v1/car/:id', Cars.getonecar);
 router.get('/api/v1/cars/available', Cars.getallavailable);
+router.get('/api/v1/cars/available&new', Cars.availablenew);
+router.get('/api/v1/cars/available&used', Cars.availableused);
 router.delete('/api/v1/cars/:id', Cars.deletecar);
 // Purchase orders routes
 router.get('/api/v1/orders', Orders.getallorders);

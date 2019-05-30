@@ -139,12 +139,52 @@ class Cars {
 
   static getallavailable(req, res) {
     const checkcar = CarsData.find(checkid => checkid.id === parseInt(req.params.id));
-    const carstatus = CarsData.filter(checkstatus => checkstatus.status == 'available');
+    const carstatus = CarsData.find(checkstatus => checkstatus.status == 'available');
     if (carstatus) {
       return res.status(200).send({
         status: 200,
         message: 'all available cars successfully retreived',
         data: carstatus
+      });
+    }
+    if (carstatus === undefined || carstatus.length == 0) {
+      return res.status(404).send({
+        status: 404,
+        message: 'available  cars not found',
+      });
+    }
+  }
+
+  static availablenew(req, res) {
+    const carstatus = CarsData.filter(checkstatus => checkstatus.status == 'available' && checkstatus.state == 'new');
+    if (carstatus) {
+      return res.status(200).send({
+        status: 200,
+        message: 'all available and new cars successfully retreived',
+        data: carstatus
+      });
+    }
+    if (carstatus === undefined || carstatus.length == 0) {
+      return res.status(404).send({
+        status: 404,
+        message: 'available and new  cars not found',
+      });
+    }
+  }
+
+  static availableused(req, res) {
+    const carstatus = CarsData.filter(checkstatus => checkstatus.status == 'available' && checkstatus.state == 'used');
+    if (carstatus) {
+      return res.status(200).send({
+        status: 200,
+        message: 'all available and used cars successfully retreived',
+        data: carstatus
+      });
+    }
+    if (carstatus === undefined || carstatus.length == 0) {
+      return res.status(404).send({
+        status: 404,
+        message: 'available and used cars not found',
       });
     }
   }
