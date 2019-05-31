@@ -29,6 +29,7 @@ class Users {
     });
   }
 
+
   static createuser(req, res) {
   	try {
   		if (Usersvalidations.validatesignup(req, res)) {
