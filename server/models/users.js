@@ -5,7 +5,7 @@ const UsersData = [{
   last_name: 'jonathan',
   password: 'jonathan',
   address: 'kigali',
-  is_admin: true
+  is_admin: 'true'
 }, {
   id: 2,
   email: 'lfa@andela.com',
@@ -13,6 +13,6 @@ const UsersData = [{
   last_name: 'mengere',
   password: 'zerooo',
   address: 'muhanga',
-  is_admin: false
+  is_admin: 'false'
 }];
 export default UsersData;

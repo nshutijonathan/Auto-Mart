@@ -1,4 +1,6 @@
 import express from 'express';
+import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 import UsersData from '../models/users';
 import Usersvalidations from '../validations/users';
 
@@ -27,6 +29,7 @@ class Users {
     });
   }
 
+
   static createuser(req, res) {
   	try {
   		if (Usersvalidations.validatesignup(req, res)) {
@@ -47,13 +50,13 @@ class Users {
         address: req.body.address,
         is_admin: req.body.is_admin
       };
-
       UsersData.push(user);
-      return res.status(201).send({
+      const token = jwt.sign({ id: Object.values(user)[0], is_admin: Object.values(user)[6] }, 'jwtPrivateKey');
+      return res.header('x-auth-token', token).status(201).send({
         status: 201,
         message: 'User created successfully',
         data: {
-          id: Object.values(user)[0], first_name: Object.values(user)[2], last_name: Object.values(user)[3], email: Object.values(user)[1]
+          token, id: Object.values(user)[0], first_name: Object.values(user)[2], last_name: Object.values(user)[3], email: Object.values(user)[1]
         }
       });
   	} catch (error) {
@@ -85,14 +88,17 @@ class Users {
     }
 
     const checkvalues = UsersData.filter(checkuser => checkuser.email == user.email);
+    const id = checkvalues[0].id;
     const first_name = checkvalues[0].first_name;
     const last_name = checkvalues[0].last_name;
     const email = checkvalues[0].email;
-    return res.status(200).send({
+    const is_admin = checkvalues[0].is_admin;
+    const token = jwt.sign({ id, is_admin }, 'jwtPrivateKey');
+    return res.header('x-auth-token', token).status(200).send({
       status: 200,
       message: 'successfully logged in',
       data: {
-        first_name, last_name, email
+        token, first_name, last_name, email
       }
     });
   }
