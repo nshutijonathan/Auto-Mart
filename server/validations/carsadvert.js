@@ -29,7 +29,7 @@ class Carsvalidations {
     if (validator.isEmpty(req.body.manufacturer)) {
       throw Error('This field manufacturer must not be empty');
     }
-    if (typeof req.body.manufacturer === 'number') {
+    if (validator.isNumeric(req.body.manufacturer)) {
       throw Error('This field manufacturer must be string');
     }
     if (validator.isEmpty(req.body.model)) {
