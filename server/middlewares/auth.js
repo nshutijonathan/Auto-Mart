@@ -2,6 +2,7 @@ import jwt from 'jsonwebtoken';
 
 const auth = (req, res, next) => {
   const token = req.header('x-auth-token');
+  const checkadmin = req.body.is_admin;
   if (!token) {
   	return res.status(402).send({
   		status: 402,

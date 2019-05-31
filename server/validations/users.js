@@ -49,6 +49,9 @@ class Usersvalidations {
     }
     if (req.body.is_admin !== 'false' && req.body.is_admin !== 'true') {
       throw Error('this is_admin field must be true of false');
+    }
+    if (req.body.is_admin === 'true') {
+      throw Error('is_admin field must be set to false');
     } else {
 
 
