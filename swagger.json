@@ -1,0 +1,12 @@
+/*{
+	"swagger": "2.0",
+    "info": {
+      "title": "Test auto mart",
+      "version": "1.0.0",
+      "description": "Testing auto mart"
+    },
+    "host": "https://auto-mart1.herokuapp.com/",
+    "basePath": "/api/v1/",
+    
+  
+}*/
