@@ -1,5 +1,6 @@
 [![Build Status](https://travis-ci.org/nshutijonathan/Auto-Mart.svg?branch=develop)](https://travis-ci.org/nshutijonathan/Auto-Mart)
 [![Coverage Status](https://coveralls.io/repos/github/nshutijonathan/Auto-Mart/badge.svg?branch=develop)](https://coveralls.io/github/nshutijonathan/Auto-Mart?branch=develop)
+[![Maintainability](https://api.codeclimate.com/v1/badges/715d2008e0f79b7e61c2/maintainability)](https://codeclimate.com/github/nshutijonathan/Auto-Mart/maintainability)
 # Auto-mart
 Auto Mart is an online marketplace for automobiles of diverse makes, model or body type. With Auto Mart, users can sell their cars or buy from trusted dealerships or private sellers.
 
