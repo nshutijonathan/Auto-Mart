@@ -1,7 +1,9 @@
 import express from 'express';
 import bodyParser from 'body-parser';
+import swaggerUi from 'swagger-ui-express';
+import swaggerJSDoc from 'swagger-jsdoc';
 import router from './routes/routes';
-
+import swaggerDocument from '../swagger.json';
 // set  up the express app
 const app = express();
 
@@ -18,5 +20,6 @@ app.get('/', (req, res) => {
   });
 });
 const port = process.env.PORT || 3000;
+app.use('/apis-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.listen(port, () => (console.log(`Listening on port ${port}`)));
 export default app;

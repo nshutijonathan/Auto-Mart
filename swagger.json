@@ -1,0 +1,84 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Test auto mart",
+    "version": "1.0.0",
+    "description": "Testing auto mart"
+  },
+  "host": "localhost:3000",
+  "basepath": "/api/v2",
+  "schemes": [
+    "https",
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+  	"/auth/signup": {
+  		"post": {
+  			"tags": [
+  			"AUNTENTICATION ENDPOINT ROUTES"
+  			],
+  			"summary": "User registration",
+  			"produces": [
+  			"application/json"
+  			],
+  			"parameters": [{
+  				"in": "body",
+  				"name": "body",
+  				"required": true,
+  				"schema": {
+  					"$ref": "#/definitions/login"
+  				}
+  			}
+  			],
+  			"responses": {
+  				"201": {
+  					"description": "User Registered"
+  				},
+  				"400": {
+  					"description": "User failed"
+  				},
+  				"500": {
+  					"description": "Internal server error"
+  				}
+  			}
+  		}},
+      "/auth/signin": {
+      "post": {
+        "tags": [
+        "AUNTENTICATION ENDPOINT ROUTES"
+        ],
+        "summary": "User log in",
+        "produces": [
+        "application/json"
+        ],
+        "parameters": [{
+          "in": "body",
+          "name": "body",
+          "required": true,
+          "schema": {
+            "$ref": "#/definitions/users"
+          }
+        }
+        ],
+        "responses": {
+          "201": {
+            "description": "User login in "
+          },
+          "400": {
+            "description": "User failed"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    }
+  	
+  }
+}

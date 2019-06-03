@@ -1,5 +1,6 @@
 [![Build Status](https://travis-ci.org/nshutijonathan/Auto-Mart.svg?branch=develop)](https://travis-ci.org/nshutijonathan/Auto-Mart)
 [![Coverage Status](https://coveralls.io/repos/github/nshutijonathan/Auto-Mart/badge.svg?branch=develop)](https://coveralls.io/github/nshutijonathan/Auto-Mart?branch=develop)
+[![Maintainability](https://api.codeclimate.com/v1/badges/715d2008e0f79b7e61c2/maintainability)](https://codeclimate.com/github/nshutijonathan/Auto-Mart/maintainability)
 # Auto-mart
 Auto Mart is an online marketplace for automobiles of diverse makes, model or body type. With Auto Mart, users can sell their cars or buy from trusted dealerships or private sellers.
 
@@ -15,7 +16,29 @@ Auto Mart is an online marketplace for automobiles of diverse makes, model or bo
 
 ### Heroku link Example
 
-[Auto-mart](#)
+[Auto-mart](https://auto-mart1.herokuapp.com/)
+
+
+## API ENDPOINTS
+| Ressource URL | Methods  | Description  |
+| ------- | --- | --- |
+| / | GET | The index page |
+| /api/v1/auth/signup| POST | Sign up |
+| /api/v1/auth/signin| POST | Sign in |
+| /api/v1/users| GET | Get all users |
+| /api/v1/users/:id| GET | Get specific user |
+| /api/v1/users/:id| DELETE| Delete specific user |
+| /api/v1/cars| GET | Get all cars advers |
+| /api/v1/car| POST | Create a car advert |
+| /api/v1/orders| GET | Get all  purchasing order |
+| /api/v1/order| POST| Create purchasing order  |
+| /api/v1/order/:order Id | PUT| Update price of purchasing order |
+| /api/v1/car/:car Id/status | PUT| Update car status |
+| /api/v1/car/:car Id/price | PUT| Seller Update car price |
+| /api/v1/cars/available | GET| Get all available cars |
+| /api/v1/cars/:advert id | DELETE | Delete a car advert |
+| /api/v1/cars/available&new | GET | Get all available and new cars |
+| /api/v1/cars/available&used | GET | Get all available and used cars  |
 
 ### clone the Application
 
