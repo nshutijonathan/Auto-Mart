@@ -5,7 +5,7 @@
     "version": "1.0.0",
     "description": "Testing auto mart"
   },
-  "host": "localhost:3000",
+  "host": "https://auto-mart1.herokuapp.com",
   "basepath": "/api/v2",
   "schemes": [
     "https",
@@ -67,8 +67,8 @@
         }
         ],
         "responses": {
-          "201": {
-            "description": "User login in "
+          "200": {
+            "description": "User logged in "
           },
           "400": {
             "description": "User failed"
