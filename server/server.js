@@ -20,6 +20,6 @@ app.get('/', (req, res) => {
   });
 });
 const port = process.env.PORT || 3000;
-app.use('/apis-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+// app.use('/apis-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.listen(port, () => (console.log(`Listening on port ${port}`)));
 export default app;

@@ -21,7 +21,6 @@ describe('get all cars advert', () => {
 describe('create car advert ', () => {
   it('should create car advert', (done) => {
     chai.request(server).post('/api/v1/car').set('x-auth-token', token).send({
-      owner: '1',
       state: 'used',
       status: 'available',
       price: '9',
@@ -72,7 +71,7 @@ describe('create car advert ', () => {
       .end((err, res) => {
         console.log(res.body);
         res.body.should.be.an('object');
-        res.body.should.have.property('message').eql('Field owner is required');
+        res.body.should.have.property('message').eql('Car advert is successfully created');
         done();
       });
   });

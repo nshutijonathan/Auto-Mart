@@ -14,11 +14,12 @@ class Cars {
   }
 
   static createadvert(req, res) {
+    const sellerEmail = req.user.email;
     try {
       if (Carsvalidations.createcarsad(req, res)) {}
   	const car = {
   		id: CarsData.length + 1,
-  		owner: req.body.owner,
+  		owner: req.user.id,
   		created_on: date,
   		state: req.body.state,
   		status: req.body.status,
@@ -28,35 +29,22 @@ class Cars {
   		body_type: req.body.body_type,
         photo: req.body.photo
   	};
-
-
-  	const sellerid = UserData.find(checkid => checkid.id == req.body.owner);
-  	/* const selleremail = sellerid[0].email; */
-  	console.log(sellerid);
-  	if (!sellerid) {
-  		res.status(404).send({
-  			status: 404,
-  			message: `The seller with id ${req.body.owner} not found`
-  		});
-  	}
-      if (sellerid) {
-        CarsData.push(car);
-        return res.status(201).send({
-          status: 201,
-          message: 'Car advert is successfully created',
-          data: {
-            id: car.id,
-            email: sellerid.email,
-            created_on: car.created_on,
-            manufacturer: car.manufacturer,
-            model: car.model,
-            price: car.price,
-            state: car.state,
-            status: car.status,
-            photo: car.photo
-          }
-        });
-      }
+      CarsData.push(car);
+      return res.status(201).send({
+        status: 201,
+        message: 'Car advert is successfully created',
+        data: {
+          id: car.id,
+          Email: sellerEmail, // sellerid.email,
+          created_on: car.created_on,
+          manufacturer: car.manufacturer,
+          model: car.model,
+          price: car.price,
+          state: car.state,
+          status: car.status,
+          photo: car.photo
+        }
+      });
     } catch (error) {
       return res.status(400).send({
         message: error.message

@@ -51,7 +51,7 @@ class Users {
         is_admin: req.body.is_admin
       };
       UsersData.push(user);
-      const token = jwt.sign({ id: Object.values(user)[0], is_admin: Object.values(user)[6] }, 'jwtPrivateKey');
+      const token = jwt.sign({ id: Object.values(user)[0], email: Object.values(user)[1], is_admin: Object.values(user)[6] }, 'jwtPrivateKey');
       return res.header('x-auth-token', token).status(201).send({
         status: 201,
         message: 'User created successfully',

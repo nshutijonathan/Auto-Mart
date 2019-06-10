@@ -5,8 +5,8 @@
     "version": "1.0.0",
     "description": "Testing auto mart"
   },
-  "host": "https://auto-mart1.herokuapp.com",
-  "basepath": "/api/v2",
+  "host": "http://localhost:3000",
+  "basepath": "/api/v1",
   "schemes": [
     "https",
     "http"
@@ -18,36 +18,36 @@
     "application/json"
   ],
   "paths": {
-  	"/auth/signup": {
-  		"post": {
-  			"tags": [
-  			"AUNTENTICATION ENDPOINT ROUTES"
-  			],
-  			"summary": "User registration",
-  			"produces": [
-  			"application/json"
-  			],
-  			"parameters": [{
-  				"in": "body",
-  				"name": "body",
-  				"required": true,
-  				"schema": {
-  					"$ref": "#/definitions/login"
-  				}
-  			}
-  			],
-  			"responses": {
-  				"201": {
-  					"description": "User Registered"
-  				},
-  				"400": {
-  					"description": "User failed"
-  				},
-  				"500": {
-  					"description": "Internal server error"
-  				}
-  			}
-  		}},
+    "/auth/signup": {
+      "post": {
+        "tags": [
+        "AUNTENTICATION ENDPOINT ROUTES"
+        ],       "summary": "User registration",
+
+        "produces": [
+        "application/json"
+        ],
+        "parameters": [{
+          "in": "body",
+          "name": "body",
+          "required": true,
+          "schema": {
+            "$ref": "#/definitions/users"
+          }
+        }
+        ],
+        "responses": {
+          "201": {
+            "description": "User Registered"
+          },
+          "400": {
+            "description": "User failed"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }},
       "/auth/signin": {
       "post": {
         "tags": [
@@ -79,6 +79,6 @@
         }
       }
     }
-  	
+    
   }
 }

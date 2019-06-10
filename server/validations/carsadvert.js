@@ -2,10 +2,6 @@ import validator from 'validator';
 
 class Carsvalidations {
   static createcarsad(req, res) {
-    if (validator.isEmpty(req.body.owner)) {
-      throw Error('Field owner is required');
-    }
-
     if (validator.isEmpty(req.body.state)) {
       throw Error('This Field state must not be empty');
     }
