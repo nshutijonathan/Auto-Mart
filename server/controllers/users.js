@@ -93,7 +93,7 @@ class Users {
     const last_name = checkvalues[0].last_name;
     const email = checkvalues[0].email;
     const is_admin = checkvalues[0].is_admin;
-    const token = jwt.sign({ id, is_admin }, 'jwtPrivateKey');
+    const token = jwt.sign({ id, email, is_admin }, 'jwtPrivateKey');
     return res.header('x-auth-token', token).status(200).send({
       status: 200,
       message: 'successfully logged in',
