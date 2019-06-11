@@ -15,16 +15,12 @@ class Orders {
   }
 
   static createorder(req, res) {
+    const buyerId = req.user.id;
   	try {
-  		if (req.body.amount < 1) {
-  			return res.status(400).send({
-  				status: 400,
-  				message: 'Please field is required'
-  			});
-  		}
+      if (Ordersvalidations.purchaseorder(req, res)) {}
   	const order = {
   		id: Ordersmodel.length + 1,
-  		buyer: req.body.buyer,
+  		buyer: buyerId,
   		car_id: req.body.car_id,
   		amount: req.body.amount,
   		status: req.body.status
@@ -39,14 +35,8 @@ class Orders {
 
   	});
       }
-  	if (!buyerid) {
-  		return res.status(404).send({
-  			status: 404,
-  			message: `The buyer with id ${req.body.buyer} not found`,
 
-  		});
-  	}
-  	if ((buyerid) && (carid)) {
+  	if (carid) {
   		Ordersmodel.push(order);
   		return res.status(201).send({
   			status: 201,
