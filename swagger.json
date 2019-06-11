@@ -9,7 +9,7 @@
             "url": "https://opensource.org/licenses/MIT"
         }
     },
-    "host": "auto-mart1.herokuapp.com",
+    "host": "localhost:3000",
     "basePath": "/api/v1",
     "tags": [{
             "name": "Users",
@@ -29,7 +29,8 @@
         }
     ],
     "schemes": [
-        "https"
+        "https",
+        "http"
     ],
     "consumes": [
         "application/json"
