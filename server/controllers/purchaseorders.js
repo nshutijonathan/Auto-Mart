@@ -18,13 +18,14 @@ class Orders {
     const buyerId = req.user.id;
   	try {
       if (Ordersvalidations.purchaseorder(req, res)) {}
-  	const order = {
-  		id: Ordersmodel.length + 1,
-  		buyer: buyerId,
-  		car_id: req.body.car_id,
-  		amount: req.body.amount,
-  		status: req.body.status
-  	};
+      req.body.id = Ordersmodel.length + 1;
+  	const {
+  		id,
+  		buyerId,
+  		car_id,
+  		amount,
+  		status,
+  	} = req.body;
   	const carid = CarsData.find(checkid => checkid.id == req.body.car_id);
       const buyerid = UserData.find(checkid => checkid.id == req.body.buyer);
       if (!carid) {
@@ -42,17 +43,17 @@ class Orders {
       }
 
   	if (carid.status === 'available') {
-  		Ordersmodel.push(order);
+  		Ordersmodel.push(req.body);
   		return res.status(201).send({
   			status: 201,
   			message: ' Purchase Order successfully created',
   			data: {
-  				id: order.id,
-  				car_id: order.car_id,
-  				created_on: date,
-  				status: order.status,
+  				id,
+  				car_id,
+  				date,
+  				status,
   				price: carid.price,
-  				price_offered: order.amount,
+  				price_offered: amount,
   			}
   		});
   	}
