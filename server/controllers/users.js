@@ -41,22 +41,18 @@ class Users {
   				});
   			}
   		}
-  		const user = {
-        id: UsersData.length + 1,
-        email: req.body.email,
-        first_name: req.body.first_name,
-        last_name: req.body.last_name,
-        password: req.body.password,
-        address: req.body.address,
-        is_admin: req.body.is_admin
-      };
-      UsersData.push(user);
-      const token = jwt.sign({ id: Object.values(user)[0], email: Object.values(user)[1], is_admin: Object.values(user)[6] }, 'jwtPrivateKey');
+      req.body.id = UsersData.length + 1;
+      const {
+        id, email, first_name, last_name, password, address, is_admin
+      } = req.body;
+
+      UsersData.push(req.body);
+      const token = jwt.sign({ id, email, is_admin }, 'jwtPrivateKey');
       return res.header('x-auth-token', token).status(201).send({
         status: 201,
         message: 'User created successfully',
         data: {
-          token, id: Object.values(user)[0], first_name: Object.values(user)[2], last_name: Object.values(user)[3], email: Object.values(user)[1]
+          token, id, first_name, last_name, email
         }
       });
   	} catch (error) {

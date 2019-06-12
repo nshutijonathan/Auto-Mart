@@ -15,22 +15,18 @@ class Orders {
   }
 
   static createorder(req, res) {
+    const buyerId = req.user.id;
   	try {
-  		if (req.body.amount < 1) {
-  			return res.status(400).send({
-  				status: 400,
-  				message: 'Please field is required'
-  			});
-  		}
-  	const order = {
-  		id: Ordersmodel.length + 1,
-  		buyer: req.body.buyer,
-  		car_id: req.body.car_id,
-  		amount: req.body.amount,
-  		status: req.body.status
-  	};
+      if (Ordersvalidations.purchaseorder(req, res)) {}
+      req.body.id = Ordersmodel.length + 1;
+  	const {
+  		id,
+  		buyerId,
+  		car_id,
+  		amount,
+  		status,
+  	} = req.body;
   	const carid = CarsData.find(checkid => checkid.id == req.body.car_id);
-
       const buyerid = UserData.find(checkid => checkid.id == req.body.buyer);
       if (!carid) {
   	return res.status(404).send({
@@ -39,25 +35,25 @@ class Orders {
 
   	});
       }
-  	if (!buyerid) {
-  		return res.status(404).send({
-  			status: 404,
-  			message: `The buyer with id ${req.body.buyer} not found`,
+      if (carid.status !== 'available') {
+        return res.status(400).send({
+          status: 400,
+          message: `The car with id ${req.body.car_id} is not available`
+        });
+      }
 
-  		});
-  	}
-  	if ((buyerid) && (carid)) {
-  		Ordersmodel.push(order);
+  	if (carid.status === 'available') {
+  		Ordersmodel.push(req.body);
   		return res.status(201).send({
   			status: 201,
   			message: ' Purchase Order successfully created',
   			data: {
-  				id: order.id,
-  				car_id: order.car_id,
-  				created_on: date,
-  				status: order.status,
+  				id,
+  				car_id,
+  				date,
+  				status,
   				price: carid.price,
-  				price_offered: order.amount,
+  				price_offered: amount,
   			}
   		});
   	}
@@ -136,9 +132,10 @@ class Orders {
   				message: `Car with id ${req.params.id} not found`
   			});
   		}
+      const useremail = req.user.email;
   		const checkcar = CarsData.find(checkid => checkid.id === parseInt(req.params.id));
-  		const checkmail = UserData.filter(checkmail => checkmail.id === parseInt(checkcar.owner));
-  		const checkedmail = checkmail[0].email;
+  		// const checkmail = UserData.filter(checkmail => checkmail.id ===useremail);
+  		// const checkedmail = checkmail[0].email;
   			if (!checkcar) {
   		return res.status(404).send({
   			status: 404,
@@ -152,7 +149,7 @@ class Orders {
   			message: 'Car status is updated successfully',
   			data: {
   				id: checkcar.id,
-  				email: checkedmail,
+  				email: useremail,
   				created_on: date,
   				manufacturer: checkcar.manufacturer,
   				model: checkcar.model,
