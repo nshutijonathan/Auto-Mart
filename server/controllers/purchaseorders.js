@@ -26,7 +26,6 @@ class Orders {
   		status: req.body.status
   	};
   	const carid = CarsData.find(checkid => checkid.id == req.body.car_id);
-
       const buyerid = UserData.find(checkid => checkid.id == req.body.buyer);
       if (!carid) {
   	return res.status(404).send({
@@ -35,8 +34,14 @@ class Orders {
 
   	});
       }
+      if (carid.status !== 'available') {
+        return res.status(400).send({
+          status: 400,
+          message: `The car with id ${req.body.car_id} is not available`
+        });
+      }
 
-  	if (carid) {
+  	if (carid.status === 'available') {
   		Ordersmodel.push(order);
   		return res.status(201).send({
   			status: 201,
@@ -126,9 +131,10 @@ class Orders {
   				message: `Car with id ${req.params.id} not found`
   			});
   		}
+      const useremail = req.user.email;
   		const checkcar = CarsData.find(checkid => checkid.id === parseInt(req.params.id));
-  		const checkmail = UserData.filter(checkmail => checkmail.id === parseInt(checkcar.owner));
-  		const checkedmail = checkmail[0].email;
+  		// const checkmail = UserData.filter(checkmail => checkmail.id ===useremail);
+  		// const checkedmail = checkmail[0].email;
   			if (!checkcar) {
   		return res.status(404).send({
   			status: 404,
@@ -142,7 +148,7 @@ class Orders {
   			message: 'Car status is updated successfully',
   			data: {
   				id: checkcar.id,
-  				email: checkedmail,
+  				email: useremail,
   				created_on: date,
   				manufacturer: checkcar.manufacturer,
   				model: checkcar.model,

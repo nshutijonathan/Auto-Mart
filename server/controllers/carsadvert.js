@@ -194,7 +194,26 @@ class Cars {
       });
     }
   }
+
+  static unsoldCarsWithinRange(req, res) {
+    const Prices = {
+      min_price: req.query.min_price,
+      max_price: req.query.max_price,
+
+    };
+    const AllUnsoldCars = CarsData.filter(car => car.status === 'available');
+    const PriceRange = AllUnsoldCars.filter(p => p.price <= Prices.min_price && p.price <= Prices.max_price);
+    if (PriceRange.length < 1) {
+      return res.status(404).send({
+        status: 404,
+        message: 'no cars within that specific range'
+      });
+    }
+    return res.status(200).send({
+      status: 200,
+      message: 'cars retreived successfully',
+      data: PriceRange
+    });
+  }
 }
-
-
 export default Cars;
