@@ -18,6 +18,11 @@ Auto Mart is an online marketplace for automobiles of diverse makes, model or bo
 
 [Auto-mart](https://auto-mart1.herokuapp.com/)
 
+### Swagger link Example
+[Auto-mart-swagger](https://auto-mart1.herokuapp.com/apis-docs/)
+
+### MY swagger  link reference
+[Placide-Irandora](https://github.com/placideirandora/epic-mail/blob/develop/swagger.json)
 
 ## API ENDPOINTS
 | Ressource URL | Methods  | Description  |
