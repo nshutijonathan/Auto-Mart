@@ -56,5 +56,20 @@ class Carsvalidations {
     }
     return true;
   }
+
+  static availablerange(req, res) {
+    if (!(req.query.min_price)) {
+      throw Error('min_price is required');
+    }
+    if (!(req.query.max_price)) {
+      throw Error('max_price is required');
+    }
+    if (!validator.isAlphanumeric(req.query.min_price)) {
+      throw Error('min_price must not contain special characters');
+    }
+    if (!validator.isAlphanumeric(req.query.max_price)) {
+      throw Error('max_price must not contain special characters');
+    }
+  }
 }
 export default Carsvalidations;
