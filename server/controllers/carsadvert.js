@@ -198,24 +198,35 @@ class Cars {
   }
 
   static unsoldCarsWithinRange(req, res) {
-    const Prices = {
-      min_price: req.query.min_price,
-      max_price: req.query.max_price,
+    try {
+      if (Carsvalidations.availablerange(req, res)) {}
+      const {
+        min_price,
+        max_price
+      } = req.query;
+      const min = Math.min(min_price, max_price);
+      const max = Math.max(min_price, max_price);
 
-    };
-    const AllUnsoldCars = CarsData.filter(car => car.status === 'available');
-    const PriceRange = AllUnsoldCars.filter(p => p.price <= Prices.min_price && p.price <= Prices.max_price);
-    if (PriceRange.length < 1) {
-      return res.status(404).send({
-        status: 404,
-        message: 'no cars within that specific range'
+      const allunsoldCars = CarsData.filter(car => car.status === 'available');
+      const RangePrice = allunsoldCars.filter(checkPrice => checkPrice.price >= min && checkPrice.price <= max);
+      if (!RangePrice.length) {
+        return res.status(200).send({
+          status: 200,
+          message: 'no cars within this range',
+          data: RangePrice
+        });
+      }
+      return res.status(200).send({
+        status: 200,
+        message: 'Cars within range retreived successfully',
+        data: RangePrice
+      });
+    } catch (error) {
+      return res.status(400).send({
+        status: 400,
+        message: error.message
       });
     }
-    return res.status(200).send({
-      status: 200,
-      message: 'cars retreived successfully',
-      data: PriceRange
-    });
   }
 }
 export default Cars;
