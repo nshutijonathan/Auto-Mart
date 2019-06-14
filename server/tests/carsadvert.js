@@ -418,8 +418,8 @@ describe('delete a car ', () => {
     });
   });
 });
-describe('get all cars within range', () => {
-  it('should  get cars within range', (done) => {
+describe('get all', () => {
+  it('should  get cars within price  range', (done) => {
     chai.request(server).get('/api/v1/range/cars?status=available&min_price=200&max_price=1000')
       .end((err, res) => {
         console.log(res.body);
@@ -432,6 +432,14 @@ describe('get all cars within range', () => {
       .end((err, res) => {
         console.log(res.body);
         res.body.data.should.be.an('array');
+        done();
+      });
+  });
+  it('should  get available cars with specific body_type ', (done) => {
+    chai.request(server).get('/api/v1/type/cars?body_type=car')
+      .end((err, res) => {
+        console.log(res.body);
+        res.body.should.be.an('object');
         done();
       });
   });
