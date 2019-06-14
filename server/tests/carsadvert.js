@@ -143,7 +143,7 @@ describe('create car advert ', () => {
       .end((err, res) => {
         console.log(res.body);
         res.body.should.be.an('object');
-        res.body.should.have.property('message').eql('this status field must be sold or available');
+        res.body.should.have.property('message').eql('this status field must be available');
         done();
       });
   });
@@ -335,7 +335,7 @@ describe('get all available ', () => {
         res.body.should.be.an('object');
         res.body.should.have.property('status').eql(200);
         res.body.should.have.property('message').eql('all available cars successfully retreived');
-        res.body.data.should.be.an('object');
+        res.body.data.should.be.an('array');
         done();
       });
   });
@@ -416,5 +416,23 @@ describe('delete a car ', () => {
       res.body.should.have.property('message').eql('Access denied. no token provided');
       done();
     });
+  });
+});
+describe('get all cars within range', () => {
+  it('should  get cars within range', (done) => {
+    chai.request(server).get('/api/v1/range/cars?status=available&min_price=200&max_price=1000')
+      .end((err, res) => {
+        console.log(res.body);
+        res.body.should.be.an('object');
+        done();
+      });
+  });
+  it('should  get all cars ', (done) => {
+    chai.request(server).get('/api/v1/cars')
+      .end((err, res) => {
+        console.log(res.body);
+        res.body.data.should.be.an('array');
+        done();
+      });
   });
 });

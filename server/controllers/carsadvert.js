@@ -14,14 +14,15 @@ class Cars {
   }
 
   static createadvert(req, res) {
-    const sellerEmail = req.user.email;
     const owner = req.user.id;
+    const sellerEmail = req.user.email;
     try {
       if (Carsvalidations.createcarsad(req, res)) {}
       req.body.id = CarsData.length + 1;
+      req.body.sellerEmail = req.user.email;
   	const {
   		id,
-  		owner,
+  		sellerEmail,
   		date,
   		state,
   		status,
@@ -69,8 +70,9 @@ class Cars {
         });
       }
       const checkcar = CarsData.find(checkid => checkid.id === parseInt(req.params.id));
-      const checkmail = UserData.filter(checkmail => checkmail.id === parseInt(checkcar.owner));
-      const checkedmail = checkmail[0].email;
+      const Foundmail = checkcar.sellerEmail;
+      const checkmail = UserData.filter(checkmail => checkmail.sellerEmail === parseInt(checkcar.owner));
+      // const checkedmail = checkmail[0].email;
       if (!checkcar) {
         return res.status(404).send({
           status: 404,
@@ -84,7 +86,7 @@ class Cars {
           message: 'Car price is updated successfully',
           data: {
             id: checkcar.id,
-            email: checkedmail,
+            email: Foundmail,
             created_on: date,
             manufacturer: checkcar.manufacturer,
             model: checkcar.model,
@@ -97,9 +99,12 @@ class Cars {
         });
       }
     } catch (error) {
+      if (error) {
+        console.log(error);
+      }
       return res.status(400).send({
         status: 400,
-        message: `The order with id ${req.params.id} not found`
+        message: error.message
       });
     }
   }
@@ -129,7 +134,7 @@ class Cars {
 
   static getallavailable(req, res) {
     const checkcar = CarsData.find(checkid => checkid.id === parseInt(req.params.id));
-    const carstatus = CarsData.find(checkstatus => checkstatus.status == 'available');
+    const carstatus = CarsData.filter(checkstatus => checkstatus.status == 'available');
     if (carstatus) {
       return res.status(200).send({
         status: 200,
@@ -175,6 +180,43 @@ class Cars {
       return res.status(404).send({
         status: 404,
         message: 'available and used cars not found',
+      });
+    }
+  }
+
+  static availablemanufacturer(req, res) {
+    console.log(req.query.manufacturer);
+    const carstatus = CarsData.filter(checkstatus => checkstatus.status == 'available');
+    const Carsmanufacturer = carstatus.filter(checkmanuf => checkmanuf.manufacturer == req.query.manufacturer);
+    if (Carsmanufacturer.length) {
+      return res.status(200).send({
+        status: 200,
+        message: `all available with ${req.query.manufacturer} manufacturer retreived successfully`,
+        data: Carsmanufacturer
+      });
+    }
+    if (Carsmanufacturer === undefined || Carsmanufacturer.length == 0) {
+      return res.status(404).send({
+        status: 404,
+        message: `all available with ${req.query.manufacturer} manufacturer retreived successfully`,
+      });
+    }
+  }
+
+  static bodytype(req, res) {
+    const carstatus = CarsData.filter(checkstatus => checkstatus.status == 'available');
+    const carsbody_type = carstatus.filter(checktype => checktype.body_type == req.query.body_type);
+    if (carsbody_type) {
+      return res.status(200).send({
+        status: 200,
+        message: `Cars with ${req.query.body_type} body type retreived successfully`,
+        data: carsbody_type
+      });
+    }
+    if (carsbody_type === undefined || carsbody_type.length == 0) {
+      return res.status(404).send({
+        status: 404,
+        message: `Cars with ${req.query.body_type} body type not retreived successfully`,
       });
     }
   }

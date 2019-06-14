@@ -24,6 +24,8 @@ router.get('/api/v1/cars/available&new', Cars.availablenew);
 router.get('/api/v1/cars/available&used', Cars.availableused);
 router.delete('/api/v1/cars/:id', [auth, admin], Cars.deletecar);
 router.get('/api/v1/range/cars', Cars.unsoldCarsWithinRange);
+router.get('/api/v1/availablemanufacturer/cars', Cars.availablemanufacturer);
+router.get('/api/v1/type/Cars', Cars.bodytype);
 // Purchase orders routes
 router.get('/api/v1/orders', [auth, admin], Orders.getallorders);
 router.post('/api/v1/order', auth, Orders.createorder);
